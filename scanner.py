@@ -69,11 +69,10 @@ match arguments_len:
                     user_scan_timeout = int(split[1])
                 else:
                     user_scan_timeout = 1
-        if sys.argv[3].startswith("0-"):
+        if sys.argv[3].startswith("-s") != True:
             range_split = sys.argv[3].split('-')
-            print(range_split)
             user_port_range_start = int(range_split[0])
-            user_port_range_end = int(range_split[1])
+            user_port_range_end = int(range_split[1]) + 1
         elif sys.argv[3].startswith("0-") == False and sys.argv[3] != "-a":
             user_port_range_end = sys.argv[3]
 
@@ -88,6 +87,7 @@ print("-" * 50)
 print("Scanning target " + target)
 print(f"Time started: {start_time}")
 print("-" * 50)
+
 print("PORT         STATE         SERVICE         OS")
 
 try:
